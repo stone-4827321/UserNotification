@@ -4,14 +4,14 @@
 
 - **本地推送**通过 App 本地定制，加入到系统的 Schedule 里，然后在指定的条件达成时推送的本机的 App 上。
 
-![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_UI.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4trc9wf4j30cs09zmzc.jpg)
 
 - **远程推送**通过服务端向苹果推送服务器 Apple Push Notification Service (APNs) 发送 Notification Payload，APNs 再将推送下发到指定设备的指定 App 上。
   - 设备联网时（无论是蜂窝联网还是Wi-Fi联网）都会与 APNs 服务器建立一个长连接（persistent IP connection）；
   - 当应用服务器推送一条通知的时候，这条通知并不是直接推送给设备，而是先推送到 APNs 服务器， APNs 服务器再通过与设备建立的长连接把通知推送到设备上；
   - 远程推送必须要求设备连网状态下才能收到。而当设备处于非联网状态的时候，APNs 服务器会保留应用服务器所推送的最后一条通知，当设备转换为连网状态时，APNs 则把其保留的最后一条通知推送给设备。如果设备长时间处于非联网状态下，APNs 服务器为其保存的最后一条通知则会丢失。
 
-![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E6%9C%AC%E5%9C%B0%E6%8E%A8%E9%80%81.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4trk3py9j30cr0cpmym.jpg)
 
 ### 推送优化
 
@@ -53,9 +53,9 @@
 
 - **`UNNotificationSettings`** 查看通知的权限
 
-  - 权限：授权、未授权、未设置、临时通知（不会给用户授权的弹窗而直接尝试给用户推送，推送的消息只会以隐式推送的方式展示给用户）；
+  - 权限：授权、未授权、未设置、临时通知（不会给用户授权的弹窗而直接尝试给用户推送，推送的消息只会以隐式推送的方式展示给用户，如下图所示）；
 
-    ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E4%B8%B4%E6%97%B6%E6%8E%A8%E9%80%81.png)
+    ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tpec3f6j30oc0duwu4.jpg)
 
   - 是否支持、允许或禁止：红点、声音、弹窗等通知送达样式，车载模式时仍推送，勿扰模式时收到重要通知可以声音提示，锁屏后仍显示，Siri 通过 AirPods 自动读出信息；
 
@@ -63,7 +63,7 @@
 
   - 系统的通知设置里是否显示一个"xxx通知设置"的按钮，点击后可进入应用（可设置直接进入到应用内部通知设置的页面）。
 
-    ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E9%80%9A%E7%9F%A5%E8%AE%BE%E7%BD%AE.png)
+    ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tq3ay66j30oi0cq7cc.jpg)
 
 - 注册远程推送
 
@@ -82,7 +82,7 @@
   - 封装通知的标题，内容，红点数等；
   - 通知分组的标识和分组的提示（结合 `UNNotificationCategory`）；
 
-  ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E5%88%86%E7%BB%84.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tvzfxuzj30nm08ktj1.jpg)
 
   - 从通知启动应用时显示的图片；
   - 设置通知的声效 `UNNotificationSound`；
@@ -187,7 +187,7 @@
   content.categoryIdentifier = @"category";
   ```
 
-![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E5%A4%9A%E5%AA%92%E4%BD%93%26%E4%BA%A4%E4%BA%92.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4ts0u5nfj30a10f1acb.jpg)
 
 ## 回调
 
@@ -315,18 +315,18 @@
   - **default content** 是系统的界面，主要用于显示通知的文本内容；
   - **notification action** 是用户交互操作按钮。
 
-  ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_UI.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tsjsvsej30u80msqcz.jpg)
 
 - 可以通过`Notification Content Extension` 来自定义以上视图的布局及增加自定义视图。
 
   - 新建 **Notification Content** 类型的 **Target**，该扩展中自带一个 storyboard 文件和一个 `NotificationViewController`  类，以及一个 info.plist 文件。
   - 配置使用 `NotificationViewController` （对应 NSExtensionPrincipalClass）或 storyboard 文件（对应 NSExtensionMainStoryboard）进行视图的显示载体。
 
-  ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E8%87%AA%E5%AE%9A%E4%B9%89UI1.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tt2u2y6j3114046jsm.jpg)
 
   - 设置 category（对应 NSExtensionAttributes.UNNotificationExtensionCategory），使用本地通知时必须和本地通知设置的 category 属性 一致，使用远程通知时必须和 aps 中设置的 category 字段一致。可以设置多个 category 使得视图设计通用。
 
-  ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E8%87%AA%E5%AE%9A%E4%B9%89UI2.png)
+  ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4ttakospj3114066mz6.jpg)
 
   > 如果以上设置正确但扩展不被执行，可尝试修改扩展的 Deployment Target 设置为 10.0。
 
@@ -344,8 +344,8 @@
 
       设置自定义通知界面的高度与宽度（设备屏幕宽度）的比（对应 NSExtensionAttributes.UNNotificationExtensionInitialContentSizeRatio），系统根据这个比值来计算通知界面的高度。 
 
-    ![image](https://github.com/stone-4827321/UserNotification/blob/master/Images/%E6%8E%A8%E9%80%81%E6%A1%86%E6%9E%B6_%E8%87%AA%E5%AE%9A%E4%B9%89UI3.png)
-    
+    ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gk4tu8pnbmj310g06240f.jpg)
+
     - 隐藏系统默认的 default content 视图（对应 NSExtensionAttributes.UNNotificationExtensionDefaultContentHidden 设置为 YES）。
 
     - iOS12 系统及以上，点击通知后不再响应主应用的方法且不再进入主应用（对应 NSExtensionAttributes.UNNotificationExtensionUserInteractionEnabled 设置为 YES）。
